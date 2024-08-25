@@ -43,12 +43,7 @@ run_geth() {
     echo "Running geth..."
 
     # Create a screen session for geth
-    screen -S geth -dm
-
-    # Run the geth client inside the screen session
-    screen -S geth -p 0 -X stuff "cd node-utils/story-node-cli/linux && chmod +x run_commands.sh && sudo bash run_commands.sh\n"
-    screen -S geth -p 0 -X stuff "sleep 5\n"  # Give some time for geth to start
-    screen -S geth -p 0 -X stuff "echo 1\n"
+    screen -S geth -dm bash -c 'cd node-utils/story-node-cli/linux && chmod +x run_commands.sh && sudo bash run_commands.sh && sleep 5 && echo 1'
 }
 
 # Function to run iliad
@@ -56,13 +51,7 @@ run_iliad() {
     echo "Running iliad..."
 
     # Create a screen session for iliad
-    screen -S iliad -dm
-
-    # Run the iliad client inside the screen session
-    screen -S iliad -p 0 -X stuff "cd node-utils/story-node-cli/linux && sudo bash run_commands.sh\n"
-    screen -S iliad -p 0 -X stuff "sleep 5\n"  # Give some time for iliad to start
-    screen -S iliad -p 0 -X stuff "echo 2\n"
-    screen -S iliad -p 0 -X stuff "echo ABCName\n"
+    screen -S iliad -dm bash -c 'cd node-utils/story-node-cli/linux && sudo bash run_commands.sh && sleep 5 && echo 2 && echo ABCName'
 }
 
 # Main script execution
